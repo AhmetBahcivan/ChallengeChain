@@ -16,20 +16,22 @@
 
 **Rewards:** Participants who successfully complete the challenge without breaking the chain are rewarded with points. The app tracks and assigns rewards based on their achievements, providing a sense of accomplishment and motivation.
 
+**Challenge Messaging:** Participants can communicate with each other within the app through messages or warnings related to the challenge status. They can provide support, reminders, or encouragement to help each other stay motivated and complete the challenges successfully.
+
 **User Profile:** Users have their profiles where they can view their challenges, achievements, points, and overall progress. They can also manage their challenge invitations and view the challenges they are participating in.
 
 **Technology Stack:**
 
 The Daily Challenge App is built using the following technologies:
+* Backend: Java and PostgreSQL for handling the server-side logic and database management.
+* Frontend: Flutter framework for developing cross-platform mobile applications, ensuring a consistent user experience on both Android and iOS devices.
 
-Backend: Java and PostgreSQL for handling the server-side logic and database management.
-Frontend: Flutter framework for developing cross-platform mobile applications, ensuring a consistent user experience on both Android and iOS devices.
-Project Goals:
+**Project Goals:**
+* Foster motivation and accountability among users through daily challenges and chain streaks.
+* Enable participants to communicate with each other within the app, providing support, reminders, or encouragement.
+* Encourage social interaction and a sense of community among friends through challenge invitations, shared achievements, and messaging features.
+* Provide a user-friendly and intuitive mobile application interface for seamless challenge creation, tracking, messaging, and management.
+* Maintain robust and secure data management using a PostgreSQL database and Java backend, including the storage and retrieval of challenge messages.
+* Deliver a reliable and responsive mobile app experience for both Android and iOS platforms using Flutter.
 
-Foster motivation and accountability among users through daily challenges and chain streaks.
-Encourage social interaction and healthy competition among friends through challenge invitations and shared achievements.
-Provide a user-friendly and intuitive mobile application interface for seamless challenge creation, tracking, and management.
-Maintain robust and secure data management using a PostgreSQL database and Java backend.
-Deliver a reliable and responsive mobile app experience for both Android and iOS platforms using Flutter.
-The Daily Challenge App strives to promote personal growth, habit formation, and a supportive community of users striving to achieve their goals together. It aims to provide an engaging and rewarding experience, empowering individuals to create positive changes in their lives through daily challenges.
-
+The Daily Challenge App strives to create an engaging and supportive environment, empowering individuals to challenge themselves, maintain healthy habits, and achieve their goals with the support of their friends. It aims to provide a comprehensive and rewarding experience, where participants can communicate, motivate each other, and celebrate their successes together.
