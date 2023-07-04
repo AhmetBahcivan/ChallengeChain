@@ -1,6 +1,6 @@
 Endpoint may look like these:
 
-**Create User**
+Create User
 Method: POST
 Endpoint: /api/users
 Description: Create a new user.
@@ -76,4 +76,6 @@ Description: Mark a specific message as read by the recipient user.
 Request Body: Not required.
 Response: Returns a success message indicating that the message has been marked as read.
 
-With these updated endpoints, you can integrate Firebase Cloud Messaging to send push notifications to the recipient user when a new message is received. Upon receiving the notification, the user can access the unread messages by retrieving them using the "Get Unread Challenge Messages" endpoint. Once the user has read a message, you can use the "Mark Message as Read" endpoint to update the message status and avoid duplicate notifications.
+With these updated endpoints, you can integrate Firebase Cloud Messaging to send push notifications to the recipient user when a new message is received. 
+Upon receiving the notification, the user can access the unread messages by retrieving them using the "Get Unread Challenge Messages" endpoint. 
+Once the user has read a message, you can use the "Mark Message as Read" endpoint to update the message status and avoid duplicate notifications.
