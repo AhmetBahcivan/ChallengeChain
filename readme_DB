@@ -32,6 +32,14 @@ challenge_participant_id (Foreign Key referencing ChallengeParticipants.challeng
 status_date
 is_completed
 
+**Table: ChallengeMessages**
+message_id (Primary Key)
+challenge_participant_id (Foreign Key referencing ChallengeParticipants.challenge_participant_id)
+sender_id (Foreign Key referencing Users.user_id)
+recipient_id (Foreign Key referencing Users.user_id)
+message_content
+message_time
+
 **Table: Rewards**
 reward_id (Primary Key)
 challenge_participant_id (Foreign Key referencing ChallengeParticipants.challenge_participant_id)
