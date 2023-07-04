@@ -1,0 +1,28 @@
+
+Create User
+Method: POST
+Endpoint: /api/users
+Description: Create a new user.
+
+Request Body:
+{
+  "username": "example_user",
+  "password": "password123",
+  "email": "user@example.com"
+}
+Response: Returns the created user object with the assigned user ID.
+
+2 - Create Challenge
+Method: POST
+Endpoint: /api/challenges
+Description: Create a new challenge.
+
+Request Body:
+{
+  "challenge_name": "Example Challenge",
+  "alarm_time": "08:00",
+  "duration": 7,
+  "creator_id": 1,
+  "participants": [2, 3, 4]
+}
+Response: Returns the created challenge object with the assigned challenge ID.
