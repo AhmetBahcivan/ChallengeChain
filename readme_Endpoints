@@ -1,5 +1,33 @@
 Endpoint may look like these:
 
+
+Apologies for the oversight. Here are the additional API endpoints and model updates for the sign-up and sign-in processes:
+
+API Endpoints:
+
+Sign Up
+Method: POST
+Endpoint: /api/signup
+Description: Register a new user account.
+Request Body:
+{
+  "username": "example_user",
+  "password": "password123",
+  "email": "user@example.com"
+}
+Response: Returns the newly created user object along with a success message.
+
+Sign In
+Method: POST
+Endpoint: /api/signin
+Description: Authenticate user credentials and retrieve an access token.
+Request Body:
+{
+  "username": "example_user",
+  "password": "password123"
+}
+Response: Returns an access token that can be used for subsequent API requests.
+
 Create User
 Method: POST
 Endpoint: /api/users
