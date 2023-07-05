@@ -5,105 +5,185 @@ Apologies for the oversight. Here are the additional API endpoints and model upd
 
 API Endpoints:
 
-Sign Up
-Method: POST
-Endpoint: /api/signup
-Description: Register a new user account.
-Request Body:
+**User Management Service:**
+
+- **AUTH**:
+  
+    **POST /auth/signup:** Create a new user account.
+
+      Request body:
+      {
+        "email": "example@example.com",
+        "password": "password123"
+      }
+    
+      Response:
+      {
+        "userId": "123456",
+        "email": "example@example.com",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      }
+    
+    **POST /auth/login:** Authenticate user credentials and generate an access token.
+    
+      Request body:
+      {
+        "email": "example@example.com",
+        "password": "password123"
+      }
+      
+      Response:
+      {
+        "userId": "123456",
+        "email": "example@example.com",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      }
+    
+    **POST /auth/logout:** Revoke the user's access token and log them out.
+    
+    No request body required.
+    
+      Response:
+      {
+        "message": "Logout successful."
+      }
+
+  
+- **PROFILE**:
+
+    **GET /users/{userId}:** Get user profile information.
+    
+      Response:
+      
+      {
+        "userId": "123456",
+        "email": "example@example.com",
+        "name": "John Doe",
+        "avatar": "https://example.com/avatar.jpg"
+      }
+    
+    **PUT /users/{userId}:** Update user profile information.
+    
+      Request body:
+      
+      {
+        "name": "John Doe",
+        "avatar": "https://example.com/avatar.jpg"
+      }
+    
+      Response:
+      
+      {
+        "userId": "123456",
+        "email": "example@example.com",
+        "name": "John Doe",
+        "avatar": "https://example.com/avatar.jpg"
+      }
+
+- **SOCIAL**:
+
+    **POST /friends/request**: Send a friend request to another user.
+    
+      Request body:
+      
+      {
+        "friendId": "789012"
+      }
+      
+      Response:
+      
+      {
+        "message": "Friend request sent successfully."
+      }
+    
+    **POST /friends/accept**: Accept a friend request from another user.
+    
+      Request body:
+      
+      {
+        "requestId": "345678"
+      }
+      
+      Response:
+      
+      {
+        "message": "Friend request accepted."
+      }
+    
+    **GET /friends/list**: Get a list of user's friends.
+    
+      Response:
+      
+      {
+        "friends": [
+          {
+            "userId": "789012",
+            "name": "Jane Smith",
+            "avatar": "https://example.com/avatar.jpg"
+          },
+          {
+            "userId": "345678",
+            "name": "Alex Johnson",
+            "avatar": "https://example.com/avatar.jpg"
+          }
+        ]
+      }
+  
+- **PROGRESS**:
+
+POST /challenges/{challengeId}/participants: Add a participant to a challenge.
+
+Request body:
+
 {
-  "username": "example_user",
-  "password": "password123",
-  "email": "user@example.com"
+  "participantId": "901234"
 }
-Response: Returns the newly created user object along with a success message.
 
-Sign In
-Method: POST
-Endpoint: /api/signin
-Description: Authenticate user credentials and retrieve an access token.
-Request Body:
+Response:
+
 {
-  "username": "example_user",
-  "password": "password123"
+  "message": "Participant added successfully."
 }
-Response: Returns an access token that can be used for subsequent API requests.
 
-Create User
-Method: POST
-Endpoint: /api/users
-Description: Create a new user.
-Request Body:
+PUT /challenges/{challengeId}/participants/{participantId}/action: Update the daily action of a participant.
+
+Request body:
+
 {
-  "username": "example_user",
-  "password": "password123",
-  "email": "user@example.com"
+  "action": "Performed exercise routine"
 }
-Response: Returns the created user object with the assigned user ID.
 
-Create Challenge
-Method: POST
-Endpoint: /api/challenges
-Description: Create a new challenge.
-Request Body:
+Response:
+json
+Copy code
 {
-  "challenge_name": "Example Challenge",
-  "alarm_time": "08:00",
-  "duration": 7,
-  "creator_id": 1,
-  "participants": [2, 3, 4]
+  "message": "Daily action updated successfully."
 }
-Response: Returns the created challenge object with the assigned challenge ID.
+GET /challenges/{challengeId}/participants/{participantId}: Get the progress of a participant in a challenge.
 
-Accept Challenge Invitation
-Method: POST
-Endpoint: /api/challenges/{challenge_id}/accept
-Description: Accept the invitation to join a challenge.
-Request Body: Not required.
-Response: Returns a success message indicating that the invitation was accepted.
+Response:
 
-Start Challenge
-Method: PUT
-Endpoint: /api/challenges/{challenge_id}/start
-Description: Start the challenge after all participants have accepted the invitation.
-Request Body: Not required.
-Response: Returns a success message indicating that the challenge has been started.
-
-Update Challenge Daily Status
-Method: PUT
-Endpoint: /api/challenges/{challenge_id}/participants/{participant_id}/status
-Description: Update the daily completion status of a challenge for a participant.
-Request Body:
 {
-  "status_date": "2023-07-04",
-  "is_completed": true
+  "participantId": "789012",
+  "challengeId": "123456",
+  "completedDays": 5,
+  "lastAction": "Performed exercise routine"
 }
-Response: Returns a success message indicating that the daily status has been updated.
 
-Send Challenge Message
-Method: POST
-Endpoint: /api/challenges/{challenge_id}/participants/{participant_id}/messages
-Description: Send a message or warning to another participant in the challenge.
-Request Body:
+Reminder:
+
+POST /reminders: Schedule a reminder for a challenge.
+
+Request body:
+
 {
-  "recipient_id": 3,
-  "message_content": "Remember to complete the challenge today!"
+  "challengeId": "123456",
+  "participantId": "789012",
+  "reminderTime": "08:30 AM"
 }
-Response: Returns a success message indicating that the message was sent.
 
-Get Unread Challenge Messages
-Method: GET
-Endpoint: /api/challenges/{challenge_id}/participants/{participant_id}/unread-messages
-Description: Retrieve the unread messages received by a participant in the challenge.
-Request Body: Not required.
-Response: Returns a list of unread message objects for the participant.
+Response:
 
-Mark Message as Read
-Method: PUT
-Endpoint: /api/challenges/{challenge_id}/participants/{participant_id}/messages/{message_id}/mark-as-read
-Description: Mark a specific message as read by the recipient user.
-Request Body: Not required.
-Response: Returns a success message indicating that the message has been marked as read.
-
-With these updated endpoints, you can integrate Firebase Cloud Messaging to send push notifications to the recipient user when a new message is received. 
-Upon receiving the notification, the user can access the unread messages by retrieving them using the "Get Unread Challenge Messages" endpoint. 
-Once the user has read a message, you can use the "Mark Message as Read" endpoint to update the message status and avoid duplicate notifications.
+{
+  "message": "Reminder scheduled successfully."
+}
