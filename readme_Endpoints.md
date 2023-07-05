@@ -1,8 +1,6 @@
 Endpoint may look like these:
 
 
-Apologies for the oversight. Here are the additional API endpoints and model updates for the sign-up and sign-in processes:
-
 API Endpoints:
 
 **User Management Service:**
@@ -128,62 +126,150 @@ API Endpoints:
           }
         ]
       }
-  
+
+**Challenge Tracker Service:**
+
+- **CREATION**:
+
+    **POST /challenges**: Create a new challenge.
+    
+      Request body:
+      
+      {
+        "name": "Fitness Challenge",
+        "duration": 7,
+        "participants": ["789012", "345678"],
+        "alarmTime": "09:00 AM"
+      }
+      
+      Response:
+      
+      {
+        "challengeId": "123456",
+        "name": "Fitness Challenge",
+        "duration": 7,
+        "participants": ["789012", "345678"],
+        "alarmTime": "09:00 AM"
+      }
+    
+    **PUT /challenges/{challengeId}**: Update challenge details.
+    
+      Request body:
+      
+      {
+        "name": "New Challenge Name",
+        "duration": 10,
+        "participants": ["789012", "345678"],
+        "alarmTime": "08:30 AM"
+      }
+      
+      Response:
+      
+      {
+        "challengeId": "123456",
+        "name": "New Challenge Name",
+        "duration": 10,
+        "participants": ["789012", "345678"],
+        "alarmTime": "08:30 AM"
+      }
+    
+    **DELETE /challenges/{challengeId}**: Delete a challenge.
+    
+    No request body required.
+    
+      Response:
+      
+      {
+        "message": "Challenge deleted successfully."
+      }
+
 - **PROGRESS**:
 
-POST /challenges/{challengeId}/participants: Add a participant to a challenge.
+    **POST /challenges/{challengeId}/participants**: Add a participant to a challenge.
+    
+      Request body:
+      
+      {
+        "participantId": "901234"
+      }
+      
+      Response:
+      
+      {
+        "message": "Participant added successfully."
+      }
+    
+    **PUT /challenges/{challengeId}/participants/{participantId}/action**: Update the daily action of a participant.
+    
+      Request body:
+      
+      {
+        "action": "Performed exercise routine"
+      }
+      
+      Response:
+      
+      {
+        "message": "Daily action updated successfully."
+      }
+    
+    **GET /challenges/{challengeId}/participants/{participantId}**: Get the progress of a participant in a challenge.
+    
+      Response:
+      
+      {
+        "participantId": "789012",
+        "challengeId": "123456",
+        "completedDays": 5,
+        "lastAction": "Performed exercise routine"
+      }
 
-Request body:
+- **REMINDER**:
 
-{
-  "participantId": "901234"
-}
+    **POST /reminders**: Schedule a reminder for a challenge.
+    
+      Request body:
+      
+      {
+        "challengeId": "123456",
+        "participantId": "789012",
+        "reminderTime": "08:30 AM"
+      }
+      
+      Response:
+      
+      {
+        "message": "Reminder scheduled successfully."
+      }
 
-Response:
+**Notification Service:**
 
-{
-  "message": "Participant added successfully."
-}
+- **Push Notification:**
 
-PUT /challenges/{challengeId}/participants/{participantId}/action: Update the daily action of a participant.
-
-Request body:
-
-{
-  "action": "Performed exercise routine"
-}
-
-Response:
-json
-Copy code
-{
-  "message": "Daily action updated successfully."
-}
-GET /challenges/{challengeId}/participants/{participantId}: Get the progress of a participant in a challenge.
-
-Response:
-
-{
-  "participantId": "789012",
-  "challengeId": "123456",
-  "completedDays": 5,
-  "lastAction": "Performed exercise routine"
-}
-
-Reminder:
-
-POST /reminders: Schedule a reminder for a challenge.
-
-Request body:
-
-{
-  "challengeId": "123456",
-  "participantId": "789012",
-  "reminderTime": "08:30 AM"
-}
-
-Response:
-
-{
-  "message": "Reminder scheduled successfully."
-}
+    **POST /notifications**: Send a push notification to a user.
+    
+      Request body:
+      
+      {
+        "userId": "789012",
+        "title": "Challenge Update",
+        "message": "You have a new message from a participant."
+      }
+      
+      Response:
+      
+      {
+        "message": "Notification sent successfully."
+      }
+    
+    **GET /notifications/{notificationId}**: Get details of a specific notification.
+    
+      Response:
+      
+      {
+        "notificationId": "123456",
+        "userId": "789012",
+        "title": "Challenge Update",
+        "message": "You have a new message from a participant.",
+        "timestamp": "2023-07-05T10:00:00Z"
+      }
