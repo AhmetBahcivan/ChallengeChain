@@ -185,6 +185,36 @@ API Endpoints:
 
 - **PROGRESS**:
 
+  **GET /challenges/{challengeId}/progress**: Get the current progress and status of participants in a challenge, including challenge details.
+
+      Response:
+      
+      {
+        "challengeId": "123456",
+        "challengeName": "Fitness Challenge",
+        "duration": 7,
+        "participants": [
+          {
+            "participantId": "789012",
+            "status": "completed",
+            "completedDays": 7,
+            "lastAction": "Performed exercise routine"
+          },
+          {
+            "participantId": "345678",
+            "status": "in_progress",
+            "completedDays": 4,
+            "lastAction": "Took a walk"
+          },
+          {
+            "participantId": "901234",
+            "status": "not_started",
+            "completedDays": 0,
+            "lastAction": null
+          }
+        ]
+      }
+
     **POST /challenges/{challengeId}/participants**: Add a participant to a challenge.
     
       Request body:
